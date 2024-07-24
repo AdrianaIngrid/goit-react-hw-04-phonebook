@@ -1,10 +1,8 @@
-import { Component } from "react";
 import styles from './Filter.module.css';
 import propTypes from 'prop-types';
-class Filter extends Component {
+ function Filter ({ handleFilterChange, filter }) {
   
-  render() {
-    const { handleFilterChange, filter } = this.props;
+ 
   return (
     <div>
       <label className={styles.labelFilter}>
@@ -15,7 +13,7 @@ class Filter extends Component {
     </div>
   );
 }    
-}
+
 Filter.propTypes = {
   handleFilterChange: propTypes.func,
   filter: propTypes.string,

@@ -1,27 +1,32 @@
-import { Component } from "react";
 import propTypes from 'prop-types';
 import styles from './ContactForm.module.css';
-class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
+import React, { useState } from 'react';
+function ContactForm({ handleNewContact }) {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  function handleChange(event) {
+    const { name, value } = event.target;
+    if (name === "name")
+      setName(value);
+
+      
+    if (number === "number") 
+      setNumber(value);
+      
   };
-  handleChange = event => {
-    const { name, value } = event.currentTarget;
-    this.setState({ [name]: value });
+ function handleContact (ev) {
+   ev.preventDefault();
+   if (name.trim() && number.trim()) {
+        handleNewContact(name, number);
+        setName('');
+        setNumber('');
+   }
+
   };
-  handleContact = ev => {
-    ev.preventDefault();
-    this.props.handleNewContact(this.state);
-    this.setState({
-      name: '',
-      number: '',
-    });
-  };
-  render() {
-    const { name, number } = this.state;
+ 
+
     return (
-      <form onSubmit= {this.handleContact} className={styles.form}>
+      <form onSubmit= {handleContact} className={styles.form}>
         <label className={styles.label}>
           {' '}
           Name
@@ -29,7 +34,7 @@ class ContactForm extends Component {
             type="text"
             name="name"
             value={name}
-            onChange = {this.handleChange}
+            onChange = {handleChange}
             // pattern="^[a-zA-Z]+(([' -][a-zA-Z ])?[a-zA-Z]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
@@ -43,7 +48,7 @@ class ContactForm extends Component {
             type="tel"
             name="number"
             value={number}
-            onChange={this.handleChange}
+            onChange={handleChange}
             // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
@@ -54,7 +59,6 @@ class ContactForm extends Component {
       </form>
     );
   }
-}
 ContactForm.propTypes = {
   handleNewContact: propTypes.func,
 };

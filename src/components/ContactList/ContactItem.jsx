@@ -1,11 +1,8 @@
 import React from "react";
-import { Component } from "react";
 import propTypes from 'prop-types';
 import styles from './ContactItem.module.css';
-class ContactItem extends Component {
-    render() {
-        const { id, name, number, deleteContact} = this.props;
-  return (
+function ContactItem ({ id, name, number, deleteContact}) {
+      return (
     <div>
     
         <li key= {id} className={styles.contactItem}>
@@ -16,7 +13,7 @@ class ContactItem extends Component {
     </div>
   );
     }
-}
+
 ContactItem.propTypes = {
     id: propTypes.string,
     name: propTypes.string,

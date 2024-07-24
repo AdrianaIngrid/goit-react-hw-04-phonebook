@@ -1,18 +1,13 @@
 import ContactItem from './ContactItem';
-import { Component } from 'react';
+import { useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import propTypes from 'prop-types';
-class ContactList extends Component {
-  componentDidMount() {
-    console.log('contactlist');
+function ContactList({ contacts, deleteContact }) {
+  useEffect(() => { 
+     localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
-    const { contacts } = this.props;
-    console.log('these are contacts:', contacts);
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }
-
-  render() {
-    const { contacts, deleteContact } = this.props;
+  
     return (
       <>
         <ul>
@@ -29,7 +24,7 @@ class ContactList extends Component {
       </>
     );
   }
-}
+
 ContactList.propTypes = {
     contacts: propTypes.array,
     deleteContact: propTypes.func,
