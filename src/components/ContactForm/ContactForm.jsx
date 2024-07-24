@@ -1,7 +1,7 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
 import React, { useState } from 'react';
-function ContactForm({ handleNewContact }) {
+function ContactForm({handleNewContact} ) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   function handleChange(event) {
@@ -10,7 +10,7 @@ function ContactForm({ handleNewContact }) {
       setName(value);
 
       
-    if (number === "number") 
+    if (name === "number") 
       setNumber(value);
       
   };
@@ -60,6 +60,6 @@ function ContactForm({ handleNewContact }) {
     );
   }
 ContactForm.propTypes = {
-  handleNewContact: propTypes.func,
+  handleNewContact: PropTypes.func,
 };
 export default ContactForm;
