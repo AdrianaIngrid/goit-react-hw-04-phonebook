@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
 import React, { useState } from 'react';
+import { IoMdPersonAdd } from 'react-icons/io';
+import { BsTelephonePlusFill } from 'react-icons/bs';
 function ContactForm({handleNewContact} ) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -26,15 +28,18 @@ function ContactForm({handleNewContact} ) {
  
 
     return (
-      <form onSubmit= {handleContact} className={styles.form}>
+      <form onSubmit={handleContact} className={styles.form}>
         <label className={styles.label}>
           {' '}
-          Name
+          Name{' '}
+          <span className={styles.spanForm}>
+            <IoMdPersonAdd />
+          </span>
           <input
             type="text"
             name="name"
             value={name}
-            onChange = {handleChange}
+            onChange={handleChange}
             // pattern="^[a-zA-Z]+(([' -][a-zA-Z ])?[a-zA-Z]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
@@ -43,7 +48,10 @@ function ContactForm({handleNewContact} ) {
         <br />
         <label className={styles.label}>
           {' '}
-          Number
+          Number{' '}
+          <span className={styles.spanForm}>
+            <BsTelephonePlusFill />
+          </span>
           <input
             type="tel"
             name="number"
@@ -55,7 +63,9 @@ function ContactForm({handleNewContact} ) {
           />
         </label>
         <br />
-        <button type="submit" className={styles.addbtn}>Add Contacts</button>
+        <button type="submit" className={styles.addbtn}>
+          Add Contacts
+        </button>
       </form>
     );
   }
